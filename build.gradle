@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    springBootVersion = "2.7.3"
+    mapstructVersion = "1.5.2.Final"
+    lombokVersion = "1.18.24"
+    lombokMapstructBindingVersion = "0.2.0"
+    mySqlConnectorVersion = "8.0.32"
+    openApiVersion = "1.6.11"
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    compileOnly 'org.projectlombok:lombok'
+    implementation 'com.twilio.sdk:twilio:8.27.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    runtimeOnly "mysql:mysql-connector-java:${mySqlConnectorVersion}"
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'  //http://localhost:8080/swagger-ui/index.html#/
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
